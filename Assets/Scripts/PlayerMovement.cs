@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     float move;
     float originalGravityScale;
     Rigidbody2D rb;
+    Animator animator;
 
     void Awake()
     {
@@ -72,10 +73,19 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         originalGravityScale = rb.gravityScale;
+        animator = GetComponent<Animator>();
     }
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        bool isMoving = move!=0f;
+        animator.SetBool("isRunning", isMoving);       
+        animator.SetBool("isJumping", !isGrounded);
+        if(isMoving)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(move), 1f, 1f);
+        }
+
         if(isFalling)
         {
             rb.gravityScale = fallGravity;
