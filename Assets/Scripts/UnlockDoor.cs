@@ -11,8 +11,14 @@ public class UnlockDoor : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX("Key");
             goToNextLevel.UnlockDoor();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+    public void RestoreKey()
+    {
+        gameObject.SetActive(true);
+        goToNextLevel.LockDoor();
     }
 }

@@ -9,7 +9,7 @@ public class Spike : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.position = collision.gameObject.GetComponent<ClonePlayer>().spawnPosition.position;
-            
+            AudioManager.Instance.PlaySFX("Hurt");
             OnSpikeCollision.Invoke();
         }
     }

@@ -25,6 +25,10 @@ public class FadeSceneManager : MonoBehaviour
 
     private CanvasGroup fadeGroup;
 
+    void Start()
+    {
+        AudioManager.Instance.PlayMusic("Game");
+    }
     private void Awake()
     {
         if (Instance != null && Instance != this)

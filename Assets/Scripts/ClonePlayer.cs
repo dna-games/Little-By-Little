@@ -8,6 +8,7 @@ public class ClonePlayer : MonoBehaviour
     public KeyCode cloneKey = KeyCode.Q;
     public KeyCode resetKey = KeyCode.R;
     public Transform spawnPosition;
+    public ParticleSystem cloneEffect;
 
     bool canClone = true;
     void Start()
@@ -44,6 +45,8 @@ public class ClonePlayer : MonoBehaviour
     }
     void ClonePlayerMethode()
     {
+        AudioManager.Instance.PlaySFX("Clone");
+        Instantiate(cloneEffect, transform.position, Quaternion.identity);
         StartCoroutine(ClonePlayerCoroutine());
     }
     void OnDrawGizmosSelected()

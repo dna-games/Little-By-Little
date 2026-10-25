@@ -36,7 +36,7 @@ public class GoToNextLevel : MonoBehaviour
                 {
                     if (isLastLevel)
                     {
-                        Debug.Log("You completed all levels");
+                        FadeSceneManager.Instance.LoadScene(0);
                     }
                     else
                     {
@@ -50,5 +50,10 @@ public class GoToNextLevel : MonoBehaviour
     {
         lockDoor = false;
         spriteRenderer.sprite = unlockedDoorSprite;
+    }
+    public void LockDoor()
+    {
+        lockDoor = true;
+        spriteRenderer.sprite = lockedDoorSprite;
     }
 }
